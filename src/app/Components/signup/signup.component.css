@@ -1,0 +1,33 @@
+.header
+{
+    text-align:center
+}
+.center
+{
+    height: auto;
+    width: 400px;
+    float: right;
+    margin-right:300px;
+    margin-top: 30px;
+    /* text-align: center; */
+    /* background: chartreuse; */
+    
+}
+ 
+label,input
+{
+    width: 100%;
+}
+label,input,button
+{
+    line-height: 25px;
+    display: flex;
+    /* margin-top: 20px; */
+    margin-top: 5px;
+}
+button
+{
+    margin-top: 25px;
+    border-style: none;
+    margin-left: 150px;
+}

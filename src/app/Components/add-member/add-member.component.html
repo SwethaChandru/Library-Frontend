@@ -1,0 +1,43 @@
+<app-sidenav></app-sidenav>
+<div class="container">
+    <h3 class="header">Add Membership</h3>
+    
+    <div class="center">
+        <p style="color: green;" *ngIf="memberflag">Membership added sucessufully!!</p>
+        <form [formGroup]="form" (submit)="onMemberForm()">
+            <div>
+             <div >
+                <div [ngClass]="{'errorField' : form.get('username').errors && (form.get('username').touched || form.get('username').dirty)}">
+                    <label for="cars">Select User:</label>
+                    <select formControlName="username" id="cars" >
+                    <option *ngFor="let user of user" [value]="user._id">{{user.name}}</option>
+                </select>
+            </div>
+            <span *ngIf="form.get('username').errors && (form.get('username').touched || form.get('username').dirty)">
+                <span style="color:red;">*Select any User</span>
+            </span> 
+             </div>
+
+            <div [ngClass]="{'errorField' : form.get('startdate').errors && (form.get('startdate').touched || form.get('startdate').dirty)}">
+                <label>DOB</label>
+                <input class="flex" type="date" name="startdate" formControlName="startdate" required>
+            </div>
+            <span *ngIf="form.get('startdate').errors && (form.get('startdate').touched || form.get('startdate').dirty)">
+                <span style="color:red;">*field required</span>
+            </span>
+
+            <div [ngClass]="{'errorField' : form.get('enddate').errors && (form.get('enddate').touched || form.get('enddate').dirty)}">
+                <label>DOB</label>
+                <input class="flex" type="date" name="enddate" formControlName="enddate" required>
+            </div>
+            <span *ngIf="form.get('enddate').errors && (form.get('enddate').touched || form.get('enddate').dirty)">
+                <span style="color:red;">*field required</span>
+            </span>
+             
+              
+            </div>
+            <button class="btn btn-primary" type="submit">Add Membership</button>
+        </form>
+    </div>
+</div>
+

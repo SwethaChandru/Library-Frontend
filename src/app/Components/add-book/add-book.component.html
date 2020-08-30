@@ -1,0 +1,71 @@
+<app-sidenav></app-sidenav>
+<div class="container">
+    <h3 class="header">Add Book</h3>
+    <div class="center">
+        <p style="color: green" *ngIf="bookflag">new book added succesfully!!</p>
+        <form [formGroup]="form"(submit)="addBookForm()">
+            <div class="inlinestyle">
+              <div [ngClass]="{'errorField' : form.get('name').errors && (form.get('name').touched || form.get('name').dirty)}">
+                <label>Name</label>
+                <input type="text" name="name" formControlName="name" required>
+              </div>
+              <span *ngIf="form.get('name').errors && (form.get('name').touched || form.get('name').dirty)">
+                <span style="color:red;">*Book Name is mandatory</span>
+              </span>
+            
+              <div [ngClass]="{'errorField' : form.get('price').errors && (form.get('price').touched || form.get('price').dirty)}">
+                <label>Price</label>
+                <input type="text" name="author" formControlName="price" required>
+              </div>
+              <span *ngIf="form.get('price').errors && (form.get('price').touched || form.get('price').dirty)">
+                <span style="color:red;">*Price is mandatory</span>
+              </span>
+            
+            <div class="row" style="line-height: 0px;">
+              <div class="col-md-4" style="margin-top: 17px;">
+                <label >Isuable Status</label >
+              </div>
+              <div class="col-md-2" style="margin-top: 25px;">
+                <input type="radio" id="female" name="gender" value="Home" [checked]="radio==true" (change)="RadioCheck(yes.value)" #yes>
+              </div>
+              <div  style="margin-top: 20px; float: left;">
+                <label for="female">Yes</label><br>
+              </div>
+              <div class="col-md-2" style="margin-top: 17px;" style="margin-top: 25px;">
+                <input type="radio" id="other" name="gender" value="At Library" [checked]="radio==false"  (change)="RadioCheck(no.value)" #no>
+              </div>
+              <div  style="margin-top: 17px; margin-top: 20px" >
+                <label for="other">No</label>   
+              </div>
+            </div>
+                  
+            
+            <div [ngClass]="{'errorField' : form.get('desc').errors && (form.get('desc').touched || form.get('desc').dirty)}">
+              <label>Description</label>
+            <textarea name="" id="" cols="47" rows="3" formControlName="desc"></textarea> 
+            </div>
+            <span *ngIf="form.get('desc').errors && (form.get('desc').touched || form.get('desc').dirty)">
+              <span style="color:red;">*Description is mandatory</span>
+            </span>
+            
+            </div>
+
+            <mat-form-field class="example-chip-list">
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let author of Author" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(author)">
+                    {{author.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="author name"
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>
+
+            <button class="btn btn-primary" type="submit">Add Book</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+<div class="body">
+    <div class="con">
+        <div class="header">
+            <h1>E-Library Management system</h1>
+        </div>
+        <div class="navi">
+            <ul>
+                <li *ngIf="!IsAuth">
+                    <a href="/login">Login</a>
+                </li >
+                <li *ngIf="!IsAuth">
+                    <a href="/signup">New User</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="#">Home</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/view/student">View Student</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/addmember">Add Membership</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/addbook">Upload Books</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/view/book">View Books</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/request/issue">View Issue Requests</a>
+                </li>
+                <li *ngIf="isadmin">
+                    <a href="/request/return">View Return Requests</a>
+                </li>
+                <li *ngIf="isuser">
+                    <a href="#">Home</a>
+                </li>
+                <li *ngIf="isuser">
+                    <a href="/view/book">search Books</a>
+                </li>
+                <li *ngIf="isuser ">
+                    <a href="/request/InHand">Book InHand</a>
+                </li>
+                <li *ngIf="isuser ">
+                    <a href="/request/issueReq">Issue request</a>
+                </li>
+                <li *ngIf="isuser ">
+                    <a href="/request/returnReq">Return request</a>
+                </li>
+                <li *ngIf="isuser || isadmin">
+                    <a href="/history">History</a>
+                </li>
+                <li *ngIf="isadmin || isuser">
+                    <a href="/signup/change">Change Password</a>
+                </li>
+                <li *ngIf="IsAuth">
+                    <button (click)="logout()">logout</button>
+                </li>
+            </ul>
+        </div>
+    </div> 
+</div>
+
+

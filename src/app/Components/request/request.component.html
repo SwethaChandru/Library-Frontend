@@ -1,0 +1,108 @@
+<app-sidenav></app-sidenav>
+<div *ngIf="issueflag" class="centre" >
+    <h3> Issue Request Details</h3>
+    <div class="table" style="margin-left: 80px;">
+        <tr>
+            <th>S.NO</th>
+            <th>Request From</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>Accept / Reject</th>
+        </tr>
+        
+        <tr *ngFor="let request of issueReqDetail;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{request.users.name}}</td>
+            <td>{{request.products.Bookname}} </td>
+            <td>{{request.issuedetail}}</td>
+            <td *ngIf="request.AcceptStatus=='null'">
+                <button type="submit" style="background: transparent; border: none; color:blue; cursor: pointer;" (click)="Issueaccept(request.BookId,request._id)" >Accept</button>/
+                <button type="submit" style="background: transparent; border: none; color:red; cursor: pointer;" (click)="Issuereject(request.BookId,request._id)" >Reject</button>
+            </td>
+        </tr>
+    </div>  
+</div>
+
+<div *ngIf="returnflag" class="centre" >
+    <h3> Return Request Details</h3>
+    <div class="table" style="margin-left: 100px;">
+        <tr>
+            <th>S.NO</th>
+            <th>Request From</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>Accept</th>
+        </tr>
+        
+        <tr *ngFor="let request of returnReqDetail;let i=index" >
+            <td>{{i+1}}</td>
+            <td>{{request.users.name}}</td>
+            <td>{{request.products.Bookname}} </td>
+            <td>{{request.issuedetail}}</td>
+            <td *ngIf="request.ReturnStatus=='null'"><button type="submit" style="background: transparent; border: none; color:blue; cursor: pointer;" (click)="returnaction(request.BookId,request._id,request.userId)" >Accept</button></td>
+            <td *ngIf="request.ReturnStatus=='true'" style="color: green;">accepted </td>
+        </tr>
+    </div>  
+</div>
+
+
+<div *ngIf="issueuserflag" class="centre" >
+    <h3 style="margin-right: 120px;">Issue Request Details</h3>
+    <div class="table" style="margin-left: 150px;">
+        <tr>
+            <th>S.NO</th>
+            <th>Book Name</th>
+            <th>Issue Detail</th>
+            <th>Return</th>
+        </tr>
+        
+        <tr *ngFor="let request of requestById;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{request.products.Bookname}}</td>
+            <td>{{request.issuedetail}}</td>
+            <td *ngIf="request.AcceptStatus=='null'"><span style="color: blue;">Req sent</span></td>
+        </tr>
+    </div>  
+</div>
+
+
+
+<div *ngIf="onhanduserflag" class="centre" >
+    <h3>Books in Hands</h3>
+    <div class="table" style="margin-left: 170px;">
+        <tr>
+            <th>S.NO</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>return</th>
+        </tr>
+        
+        <tr *ngFor="let request of requestById;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{request.products.Bookname}}</td>
+            <td>{{request.issuedetail}}</td>
+            <td *ngIf="request.AcceptStatus=='true'&& !request.ReturnReqDate"><button type="submit" style="background: transparent; border: none; color:blue; cursor: pointer;" (click)="reqaction(request._id)" >Return</button></td>
+            <td *ngIf="request.ReturnReqDate" style="color: green;">Req Sent</td>
+        </tr>
+    </div>  
+</div>
+
+<div *ngIf="returnuserflag" class="centre" >
+    <h3>Return Request details</h3>
+    <div class="table" style="margin-left: 170px;">
+        <tr>
+            <th>S.NO</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>return</th>
+        </tr>
+        
+        <tr *ngFor="let request of requestById;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{request.products.Bookname}}</td>
+            <td>{{request.issuedetail}}</td>
+            <td *ngIf="request.ReturnStatus=='null'"><span style="color: blue;">Req sent</span></td>
+            <!-- <td *ngIf="request.ReturnStatus=='true'" style="color: green;">returned</td> -->
+        </tr>
+    </div>  
+</div>

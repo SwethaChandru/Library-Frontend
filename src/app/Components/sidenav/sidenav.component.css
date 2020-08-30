@@ -1,0 +1,61 @@
+.body
+{
+    margin: 0;
+    padding: 0;
+    font:90% calibri,sans-serif;
+    text-align: center;
+    
+}
+div .header{
+    background-color: #F3F2ED;
+}
+div .header h1{
+    height: 80px;
+    line-height: 80px;
+    margin: 0;
+    padding-left: 10px;
+}
+div .con
+{
+   height: 100%;
+   /* width: 700px; */
+   /* margin:0 auto; */
+   text-align:left;
+}
+div .wrapper
+{
+    float:right;
+    width: 500px;
+}
+div .navi
+{
+    float: left;
+    height:86vh;
+    background-color:palegoldenrod;
+    width: 230px;
+}
+div .navi ul{
+    margin-left: 10px;
+    margin-top: 50px;
+    list-style-type: square;
+}
+div .navi li
+{
+    margin-bottom: 5px;
+    font-size: large;
+    letter-spacing: 0.5px;
+}
+a{
+    padding: 5px;
+    text-decoration: none;
+    color: black;  
+}
+a:hover{
+    color: green;
+}
+button
+{
+    border: none;
+    background: transparent;
+}
+

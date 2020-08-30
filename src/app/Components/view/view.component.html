@@ -1,0 +1,119 @@
+<app-sidenav></app-sidenav>
+<div *ngIf="studentflag" class="centre" >
+    <h3>View User Details</h3>
+    <div class="table">
+        <tr>
+            <th>S.NO</th>
+            <th>User Name</th>
+            <th>email</th>
+            <th>Membership StartDate</th>
+            <th>Membership EndDate</th>
+        </tr>
+        
+        <tr *ngFor="let user of userdetails;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}} </td>
+            <td>{{user.startMember}}</td>
+            <td>{{user.endMember}}</td>
+        </tr>
+    </div>  
+</div>
+
+<div *ngIf="bookflag" class="centre" >
+    <h3>View Book Details</h3>
+    
+    <div class="table">
+        <div style="margin-bottom:25px;">
+            <input type="text" placeholder="Search.." name="search"[(ngModel)]="searchTerm">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+        
+        <tr>
+        <th>S.NO</th>
+            <th>BookName</th>
+            <th>price</th>
+            <th>Description</th>
+            <th>Issue Status</th>
+            <th>Availability</th>
+            <th *ngIf="isuser">Request</th>
+            <th *ngIf="isadmin">Update</th>
+            <th *ngIf="isadmin">Remove</th>
+        </tr>
+        
+        <tr *ngFor="let book of bookdetails | filter:searchTerm ;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{book.Bookname}}</td>
+            <td>{{book.price}} </td>
+            <td>{{book.Description}}</td>
+            <td>{{book.issuableStatus}}</td>
+            <!-- <td *ngIf="book.availabilityStatus=='Available'">{{book.availabilityStatus }} </td> -->
+            <td *ngIf="book.availabilityStatus=='Available'"><p style="color: green;">{{book.availabilityStatus }}</p></td>
+            <td *ngIf="book.availabilityStatus=='Not Available'"><p style="color: red;">Un Available</p></td>
+            <td *ngIf="isuser &&  book.availabilityStatus=='Available' "><button data-toggle="modal" data-target="#exampleModalCenter" (click)="storebook(book._id)" style="background:transparent;border:none; color:blue;cursor: pointer;" type="submit"  type="submit">Send Request</button></td>
+            <td *ngIf="isadmin"><button style="background:transparent;border:none; color:blue;cursor: pointer;" type="submit" (click)="store(book._id)" ><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+            <td *ngIf="isadmin" style="color: red; cursor: pointer;"><a style="color: red;"><i class="fa fa-trash" (click)="delete(book._id)" aria-hidden="true"></i></a></td>
+        </tr>
+    </div>  
+</div>
+
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Request Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div >
+                    <form #ReqForm="ngForm" (submit)="RequestForm(ReqForm)">
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Library
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-form-field>
+                                    <mat-label>Reading Hours</mat-label>
+                                    <input matInput name="name" ngModel  >
+                                  </mat-form-field>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel style="margin-top: 5px;">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Home
+                                    </mat-panel-title>
+                                    
+                                </mat-expansion-panel-header>
+                                <label for="chkYes">
+                                    <input type="radio" id="chkYes" name="chk" value="perday" ngModel  />
+                                     <label>Per Day</label>
+                                </label>
+                                <label for="chkNo">
+                                    <input type="radio" id="chkNo" name="chk" value="perweek" ngModel />
+                                    <label>Per Week</label>
+                                </label>
+                                <div id="dvtext" style="display: none">
+                                    Text Box:
+                                    <input type="text" id="txtBox" />
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <button style="float: right; margin-top: 10px;" type="submit" class="btn btn-primary">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  

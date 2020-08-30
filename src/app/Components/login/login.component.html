@@ -1,0 +1,28 @@
+<app-sidenav></app-sidenav>
+<div class="container">
+    <h3 class="header">Login Here</h3>
+    <div class="center">
+        <form [formGroup]="form"(submit)="onLoginForm()">
+            
+            <div class="inlinestyle">
+                 <div [ngClass]="{'errorField' : form.get('email').errors && (form.get('email').touched || form.get('email').dirty)}">
+                    <label>Email</label>
+                    <input type="email" name="email" formControlName="email" required>
+                  </div>
+                  <span *ngIf="form.get('email').errors && (form.get('email').touched || form.get('email').dirty)">
+                    <span style="color:red;">*Email is mandatory</span>
+                </span>
+
+                <div [ngClass]="{'errorField' : form.get('password').errors && (form.get('password').touched || form.get('password').dirty)}">
+                    <label>Password</label>
+                    <input type="password" name="password" formControlName="password" required>
+                  </div>
+                  <span *ngIf="form.get('password').errors && (form.get('password').touched || form.get('password').dirty)">
+                    <span style="color:red;">*Password is mandatory</span>
+                </span>
+
+            </div>
+            <button class="btn btn-primary" type="submit">login now</button>
+        </form>
+    </div>
+</div>

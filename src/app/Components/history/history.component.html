@@ -1,0 +1,45 @@
+<app-sidenav></app-sidenav>
+<div  class="centre" *ngIf="isuser">
+    <h3> Return Request Details</h3>
+    <div class="table">
+        <button style="margin-bottom: 10px;" (click)="clearallhistory()" >clear all</button>
+        <tr>
+            <th>S.NO</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>delete</th>
+        </tr>
+        
+        <tr *ngFor="let request of historyDetail;let i=index" >
+            <td>{{i+1}}</td>
+            <td>{{request.products.Bookname}} </td>
+            <td>{{request.issuedetail}}</td>
+            <td ><button type="submit" style="background: transparent; border: none; color:blue; cursor: pointer;" (click)="delete(request._id)" >Delete</button></td>
+        </tr>
+    </div>  
+</div>
+
+<div  class="centre" *ngIf="isadmin">
+    <h3> Return Request Details</h3>
+    <div class="table">
+        <tr>
+            <th>S.NO</th>
+            <th>UserName</th>
+            <th>Book Name</th>
+            <th>Issue detail</th>
+            <th>Issue Date</th>
+            <th>Request Date</th>
+        </tr>
+        
+        <tr *ngFor="let request of historyDetail;let i=index" >
+            <td>{{i+1}}</td>
+            <td>{{request.users.name}} </td>
+            <td>{{request.products.Bookname}} </td>
+            <td>{{request.issuedetail}}</td>
+            <td>{{request.IssueReqDate}}</td>
+            <td>{{request.ReturnReqDate}}</td>
+            <!-- <td ><button type="submit" style="background: transparent; border: none; color:blue; cursor: pointer;" (click)="delete(request._id)" >Delete</button></td> -->
+        </tr>
+    </div>  
+</div>
+

@@ -1,0 +1,82 @@
+<app-sidenav></app-sidenav>
+<div class="container" *ngIf="signupflag">
+    <h3 class="header">New User Registeration</h3>
+    <div class="center">
+        <form [formGroup]="form"(submit)="onSignupForm()">
+            <div class="inlinestyle">
+                <div [ngClass]="{'errorField' : form.get('name').errors && (form.get('name').touched || form.get('name').dirty)}">
+                    <label>Name</label>
+                    <input type="text" name="name" formControlName="name" required>
+                </div>
+                <span *ngIf="form.get('name').errors && (form.get('name').touched || form.get('name').dirty)">
+                    <span style="color:red;">*Name is mandatory</span>
+                </span>
+
+                <div [ngClass]="{'errorField' : form.get('email').errors && (form.get('email').touched || form.get('email').dirty)}">
+                    <label>Email</label>
+                    <input type="email" name="email" formControlName="email" required>
+                </div>
+                <span *ngIf="form.get('email').errors && (form.get('email').touched || form.get('email').dirty)">
+                    <span style="color:red;">*Email is mandatory</span>
+                </span>
+
+                <div [ngClass]="{'errorField' : form.get('password').errors && (form.get('password').touched || form.get('password').dirty)}">
+                    <label>Password</label>
+                    <input type="password" name="password" formControlName="password" required>
+                  </div>
+                  <span *ngIf="form.get('password').errors && (form.get('password').touched || form.get('password').dirty)">
+                    <span style="color:red;">*Password is mandatory</span>
+                </span>
+           
+            
+            
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div [ngClass]="{'errorField' : form.get('city').errors && (form.get('city').touched || form.get('city').dirty)}">
+                        <label>City</label>
+                        <input class="flex" type="text" name="city" formControlName="city" required>
+                      </div>
+                      <span *ngIf="form.get('city').errors && (form.get('city').touched || form.get('city').dirty)">
+                        <span style="color:red;">*city is mandatory</span> 
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <div [ngClass]="{'errorField' : form.get('dob').errors && (form.get('dob').touched || form.get('dob').dirty)}">
+                        <label>DOB</label>
+                        <input class="flex" type="date" name="date" formControlName="dob" required>
+                    </div>
+                    <span *ngIf="form.get('dob').errors && (form.get('dob').touched || form.get('dob').dirty)">
+                        <span style="color:red;">*Dob is mandatory</span>
+                    </span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<div class="container" *ngIf="changeflag">
+    <h3 class="header">Change Password</h3>
+    <p style="color: green;" *ngIf="passflag">password changed successully</p>
+    <div class="center">
+        <form #changeForm="ngForm" (submit)="onChangeForm(changeForm)">
+            <div class="inlinestyle">
+            <label>Old Password</label>
+            <input type="password" name="old" ngModel required #old="ngModel">
+            <div *ngIf="old.invalid && (old.dirty || old.touched)" style="color: red;">
+                <div *ngIf="old.errors.required">*field is required</div>
+            </div>
+            <label>New Password</label>
+            <input type="password" name="new" ngModel required #new="ngModel">
+            <div *ngIf="new.invalid && (new.dirty || new.touched)" style="color: red;">
+                <div *ngIf="new.errors.required">*field is required</div>
+            </div>
+            </div>
+            
+            <button class="btn btn-primary" type="submit">Reset</button>
+        </form>
+    </div>
+</div>
+
